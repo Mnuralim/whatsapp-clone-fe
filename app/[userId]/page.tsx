@@ -35,16 +35,18 @@ const Page = ({ params }: { params: { userId: string } }) => {
   if (messageError || userError) return <div>Error</div>;
 
   return (
-    <section className="flex w-full absolute z-10 top-0 md:max-w-[69%] md:right-0">
-      <div className={`w-full absolute  h-screen min-h-screen bg-black overflow-y-scroll scrollbar-width-none transition-all duration-[400ms] ${showOtherProfileSetting ? "md:max-w-[61%]" : "md:max-w-full"} `}>
-        <ChatHeader targetUser={targetUser} />
-        <ChatBody messages={allMessages} targetUserId={params.userId} currentUserId={currentUser?._id as string} />
-        <MessageBar currentUserId={currentUser?._id as string} targetUserId={params.userId} />
-      </div>
-      <div className={`h-screen w-full absolute z-[200] md:fixed md:max-w-[27%] overflow-hidden transition-all duration-[400ms] ${showOtherProfileSetting ? "right-[0px]" : "md:right-[-27%] -right-full"}`}>
+    <>
+      <section className="w-full absolute z-10 top-0 md:max-w-[69%] md:right-0">
+        <div className={`w-full absolute  h-screen min-h-screen bg-black overflow-y-scroll scrollbar-width-none transition-all duration-[400ms] ${showOtherProfileSetting ? "md:max-w-[61%]" : "md:max-w-full"} `}>
+          <ChatHeader targetUser={targetUser} />
+          <ChatBody messages={allMessages} targetUserId={params.userId} currentUserId={currentUser?._id as string} />
+          <MessageBar currentUserId={currentUser?._id as string} targetUserId={params.userId} />
+        </div>
+      </section>
+      <div className={`h-screen w-full top-0 fixed z-[200] md:fixed md:max-w-[27%] overflow-hidden transition-all duration-[400ms] ${showOtherProfileSetting ? "right-[0px]" : "md:right-[-27%] -right-full"}`}>
         <MainProfile />
       </div>
-    </section>
+    </>
   );
 };
 
